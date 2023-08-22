@@ -71,6 +71,7 @@ class Form extends Interactor
     public function number($column, $label = '')
     {
         $field = new Field\Number($column, $this->formatLabel($label));
+        $field->setElementName($column);
 
         $this->addField($field);
 
