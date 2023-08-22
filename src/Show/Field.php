@@ -391,11 +391,12 @@ HTML;
     }
 
     /**
-     * Show field as number
-     * 
-     * @param int $decimals
+     * Show field as number.
+     *
+     * @param int    $decimals
      * @param string $decimal_seperator
      * @param string $thousands_seperator
+     *
      * @return Field
      */
     public function number($decimals = 0, $decimal_seperator = '.', $thousands_seperator = ',')
@@ -424,7 +425,7 @@ HTML;
             if (json_last_error() == 0) {
                 $field->border = false;
 
-                return '<pre><code>'.json_encode($content, JSON_PRETTY_PRINT).'</code></pre>';
+                return '<pre><code>'.json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE).'</code></pre>';
             }
 
             return $value;
