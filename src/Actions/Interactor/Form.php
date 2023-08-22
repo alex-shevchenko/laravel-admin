@@ -58,6 +58,16 @@ class Form extends Interactor
         return $field;
     }
 
+    public function currency($column, $label = '')
+    {
+        $field = new Field\Currency($column, $this->formatLabel($label));
+        $field->setElementName($column);
+
+        $this->addField($field);
+
+        return $field;
+    }
+
     /**
      * @param $column
      * @param string   $label
