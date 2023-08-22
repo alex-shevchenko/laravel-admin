@@ -68,6 +68,15 @@ class Form extends Interactor
         return $field;
     }
 
+    public function number($column, $label = '')
+    {
+        $field = new Field\Number($column, $this->formatLabel($label));
+
+        $this->addField($field);
+
+        return $field;
+    }
+
     /**
      * @param $column
      * @param string   $label
