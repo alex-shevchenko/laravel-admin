@@ -33,11 +33,11 @@
             var self = $(this);
             var clone = self.clone();
 
-            var min = self.attr('min');
-            var max = self.attr('max');
+            var min = parseFloat(self.attr('min'));
+            var max = parseFloat(self.attr('max'));
 
             function setText(n) {
-                n = isNaN(n) ? 0 : n;
+                n = isNaN(n) ? 0 : parseFloat(n);
                 if ((min && n < min)) {
                     n = min;
                 } else if (max && n > max) {
@@ -48,11 +48,11 @@
 
             var group = $("<div class='input-group'></div>");
             var down = $("<button type='button'>-</button>").attr('class', 'btn btn-' + settings.downClass).click(function() {
-                setText(parseInt(clone.val(), 10) - 1);
+                setText(parseFloat(clone.val()) - 1);
                 clone.focus().trigger('change');
             });
             var up = $("<button type='button'>+</button>").attr('class', 'btn btn-' + settings.upClass).click(function() {
-                setText(parseInt(clone.val(), 10) + 1);
+                setText(parseFloat(clone.val()) + 1);
                 clone.focus().trigger('change');
             });
             $("<span class='input-group-btn'></span>").append(down).appendTo(group);
@@ -71,12 +71,12 @@
                     e.preventDefault();
                 }
             }).keyup(function(event) {
-                var n = clone.val().match(/\-?\d+/) || [0];
+                var n = clone.val().match(/\-?\d+\./) || [0];
                 setText(n[0]);
                 clone.trigger('change');
             }).blur(function(e) {
                 var c = String.fromCharCode(e.which);
-                var n = parseInt(clone.val() + c, 10);
+                var n = parseFloat(clone.val() + c);
                 setText(n);
                 clone.trigger('change');
             });
